@@ -1,0 +1,3 @@
+﻿1. 
+Books Db Context
+Scaffold-DbContext "Data Source=DESKTOP-SP9HMDR;Initial Catalog=BooksDB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context BooksSqlDBContext -ContextDir "DataContexts" -DataAnnotations -Project "BooksSQL" -Force
