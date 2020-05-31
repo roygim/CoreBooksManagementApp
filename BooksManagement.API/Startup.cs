@@ -34,7 +34,7 @@ namespace BooksManagement.API
             services.AddDbContext<BooksSqlDBContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksDBConnection")));
 
-            services.AddScoped<IBooksRepository, BooksSqlRepository>(); //BooksSqlRepository,BooksMockRepository
+            services.AddScoped<IBooksRepository, BooksMockRepository>(); //BooksSqlRepository,BooksMockRepository
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
