@@ -31,7 +31,7 @@ namespace BooksSQL.DataService
         {
             book.Id = id;
             booksContext.Entry(book).State = EntityState.Modified;
-            
+            booksContext.SaveChanges();
             return book;
         }
 
