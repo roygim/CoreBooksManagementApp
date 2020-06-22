@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using BooksSQL.DataContexts;
 using BooksManagement.Repositories;
 using BooksManagement.Repositories.Interface;
+using BooksManagement.API.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BooksManagement.API
 {
@@ -30,6 +32,12 @@ namespace BooksManagement.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<UsersDbContext>(
+                options => options.UseSqlServer(_config.GetConnectionString("BooksUsersDBConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<UsersDbContext>();
 
             services.AddDbContext<BooksSqlDBContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksDBConnection")));
@@ -55,6 +63,8 @@ namespace BooksManagement.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
