@@ -36,7 +36,7 @@ namespace BooksManagement.API
             services.AddDbContext<UsersDbContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksUsersDBConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<UsersDbContext>();
 
             services.AddDbContext<BooksSqlDBContext>(

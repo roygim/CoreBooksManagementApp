@@ -9,6 +9,12 @@
     <Compile Remove="Migrations\20200622100511_ExtendIdentityUser.Designer.cs" />
     <Compile Remove="Migrations\20200622102209_ExtendIdentityUser2.cs" />
     <Compile Remove="Migrations\20200622102209_ExtendIdentityUser2.Designer.cs" />
+    <Compile Remove="Migrations\20200623071548_ExtendIdentityUser.cs" />
+    <Compile Remove="Migrations\20200623071548_ExtendIdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20200623073008_ExtendIdentityUsers.cs" />
+    <Compile Remove="Migrations\20200623073008_ExtendIdentityUsers.Designer.cs" />
+    <Compile Remove="Migrations\20200623073924_UserCityExtendIdentityUsers.cs" />
+    <Compile Remove="Migrations\20200623073924_UserCityExtendIdentityUsers.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
