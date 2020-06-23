@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BooksManagement.Business.Managers;
 using BooksManagement.Repositories.Interface;
 using BooksSQL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace BooksManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly IBooksRepository _booksRepository;
@@ -23,6 +25,7 @@ namespace BooksManagement.API.Controllers
 
         // GET: api/Books
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Books> Index()
         {
             return BooksManager.GetAllBooks(_booksRepository);
