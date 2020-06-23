@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200622100511_ExtendIdentityUser.cs" />
+    <Compile Remove="Migrations\20200622100511_ExtendIdentityUser.Designer.cs" />
+    <Compile Remove="Migrations\20200622102209_ExtendIdentityUser2.cs" />
+    <Compile Remove="Migrations\20200622102209_ExtendIdentityUser2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">

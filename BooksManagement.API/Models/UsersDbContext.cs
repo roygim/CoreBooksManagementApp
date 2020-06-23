@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BooksManagement.API.Models
 {
-    public class UsersDbContext: IdentityDbContext
+    public class UsersDbContext: IdentityDbContext<ApplicationUser>
     {
         public UsersDbContext(DbContextOptions<UsersDbContext> options)
             : base(options)
