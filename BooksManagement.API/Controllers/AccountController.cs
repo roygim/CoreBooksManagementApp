@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -47,5 +48,28 @@ namespace BooksManagement.API.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Login")]
+        public async Task<IActionResult> Login()
+        {
+            var result = await signInManager.PasswordSignInAsync("roy", "1234", false, false);
+
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return Ok();
+        }
     }
 }
