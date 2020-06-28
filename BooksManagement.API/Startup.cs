@@ -17,6 +17,9 @@ using BooksManagement.Repositories.Interface;
 using BooksManagement.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BooksManagement.API
 {
@@ -73,6 +76,20 @@ namespace BooksManagement.API
                     }
                 };
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(o => {
+                    o.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = _config["Jwt:Issuer"],
+                        ValidAudience = _config["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]))
+                    };
+                });
 
             services.AddDbContext<BooksSqlDBContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksDBConnection")));

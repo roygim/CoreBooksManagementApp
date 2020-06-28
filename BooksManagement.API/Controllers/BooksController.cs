@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BooksManagement.Business.Managers;
 using BooksManagement.Repositories.Interface;
 using BooksSQL.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace BooksManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BooksController : ControllerBase
     {
         private readonly IBooksRepository _booksRepository;
