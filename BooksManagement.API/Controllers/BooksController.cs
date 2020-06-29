@@ -34,6 +34,7 @@ namespace BooksManagement.API.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public Books Get(int id)
         {
             return BooksManager.GetBookById(_booksRepository, id);
@@ -41,6 +42,7 @@ namespace BooksManagement.API.Controllers
 
         // POST: api/Books
         [HttpPost]
+        [AllowAnonymous]
         public Books Post(Books newBook)
         {
             return BooksManager.AddBook(_booksRepository, newBook);

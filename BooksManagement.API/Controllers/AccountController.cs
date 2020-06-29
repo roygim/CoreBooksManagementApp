@@ -105,7 +105,7 @@ namespace BooksManagement.API.Controllers
                 , _config["Jwt:Issuer"],
                 claims,
                 null,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(3),
                 signingCredentials: credentials
             );
 
