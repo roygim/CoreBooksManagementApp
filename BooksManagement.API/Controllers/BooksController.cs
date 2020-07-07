@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BooksManagement.Business.Managers;
 using BooksManagement.Repositories.Interface;
-using BooksSQL.Models;
+using BooksManagement.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +27,7 @@ namespace BooksManagement.API.Controllers
         // GET: api/Books
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<Books> Index()
+        public IEnumerable<BooksObj> Index()
         {
             return BooksManager.GetAllBooks(_booksRepository);
         }
@@ -35,7 +35,7 @@ namespace BooksManagement.API.Controllers
         // GET: api/Books/5
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public Books Get(int id)
+        public BooksObj Get(string id)
         {
             return BooksManager.GetBookById(_booksRepository, id);
         }
@@ -43,23 +43,23 @@ namespace BooksManagement.API.Controllers
         // POST: api/Books
         [HttpPost]
         [AllowAnonymous]
-        public Books Post(Books newBook)
+        public BooksObj Post(BooksObj newBook)
         {
             return BooksManager.AddBook(_booksRepository, newBook);
         }
 
         // PUT: api/Books/5
         [HttpPut("{id}")]
-        public Books Put(int id, Books book)
+        public BooksObj Put(string id, BooksObj book)
         {
             return BooksManager.UpdateBook(_booksRepository, id, book);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Books>> Delete(int id)
+        public async Task<ActionResult<BooksObj>> Delete(string id)
         {
-            Books book = await BooksManager.DeleteBook(_booksRepository, id);
+            BooksObj book = await BooksManager.DeleteBook(_booksRepository, id);
             
             if (book == null)
                 return NotFound();

@@ -1,4 +1,4 @@
-﻿using BooksSQL.Models;
+﻿using BooksManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ namespace BooksManagement.Repositories.Interface
 {
     public interface IBooksRepository
     {   
-        IEnumerable<Books> GetAllBooks();   
-        Books GetBookById(int Id);
-        Books AddBook(Books newBook);
-        Books UpdateBook(int id, Books book);
-        Task<Books> DeleteBook(int id);
+        IEnumerable<BooksObj> GetAllBooks();
+        BooksObj GetBookById(string Id);
+        BooksObj AddBook(BooksObj newBook);
+        BooksObj UpdateBook(string id, BooksObj book);
+        Task<BooksObj> DeleteBook(string id);
     }
 }

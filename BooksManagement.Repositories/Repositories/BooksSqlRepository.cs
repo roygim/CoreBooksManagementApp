@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BooksManagement.Models;
 
 namespace BooksManagement.Repositories
 {
@@ -18,29 +19,75 @@ namespace BooksManagement.Repositories
             _booksContext = booksContext;
         }
 
-        public IEnumerable<Books> GetAllBooks()
+        public IEnumerable<BooksObj> GetAllBooks()
         {
-            return BooksSqlDBService.GetAllBooks(_booksContext);
+            List<BooksObj> books = new List<BooksObj>();
+
+            IEnumerable<Books> sqlBooks = BooksSqlDBService.GetAllBooks(_booksContext);
+
+            foreach (Books b in sqlBooks)
+            {
+                books.Add(GetBooksObj(b));
+            }
+
+            return books;
         }
 
-        public Books GetBookById(int Id)
+        public BooksObj GetBookById(string Id)
         {
-            return BooksSqlDBService.GetBookById(_booksContext, Id);
+            Books sqlBook = BooksSqlDBService.GetBookById(_booksContext, int.Parse(Id));
+
+            if (sqlBook == null)
+                return null;
+
+            return GetBooksObj(sqlBook); 
         }
 
-        public Books AddBook(Books newBook)
+        public BooksObj AddBook(BooksObj newBook)
         {
-            return BooksSqlDBService.AddBook(_booksContext, newBook);
+            Books sqlBook = GetSqlBooks(newBook);
+
+            return GetBooksObj(BooksSqlDBService.AddBook(_booksContext, sqlBook));
         }
 
-        public Books UpdateBook(int id, Books book)
+        public BooksObj UpdateBook(string id, BooksObj book)
         {
-            return BooksSqlDBService.UpdateBook(_booksContext, id, book);
+            Books sqlBook = GetSqlBooks(book);
+
+            return GetBooksObj(BooksSqlDBService.UpdateBook(_booksContext, int.Parse(id), sqlBook));
         }
 
-        public async Task<Books> DeleteBook(int id)
+        public async Task<BooksObj> DeleteBook(string id)
         {
-            return await BooksSqlDBService.DeleteBook(_booksContext, id);
+            Books sqlBook = await BooksSqlDBService.DeleteBook(_booksContext, int.Parse(id));
+
+            return GetBooksObj(sqlBook);
+        }
+        
+        private Books GetSqlBooks(BooksObj book)
+        {
+            Books sqlBook = new Books();
+
+            if(!string.IsNullOrEmpty(book.Id))
+                sqlBook.Id = int.Parse(book.Id);
+
+            sqlBook.Name = book.Name;
+            sqlBook.Year = book.Year;
+            sqlBook.Author = book.Author;
+
+            return sqlBook;
+        }
+
+        private BooksObj GetBooksObj(Books book)
+        {
+            BooksObj booksObj = new BooksObj();
+
+            booksObj.Id = book.Id.ToString();
+            booksObj.Name = book.Name;
+            booksObj.Year = book.Year;
+            booksObj.Author = book.Author;
+
+            return booksObj;
         }
     }
 }

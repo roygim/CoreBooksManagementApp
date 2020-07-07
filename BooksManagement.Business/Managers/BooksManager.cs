@@ -1,5 +1,5 @@
 ﻿using BooksManagement.Repositories.Interface;
-using BooksSQL.Models;
+using BooksManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,27 +9,27 @@ namespace BooksManagement.Business.Managers
 {
     public class BooksManager
     {
-        public static IEnumerable<Books> GetAllBooks(IBooksRepository booksRepository)
+        public static IEnumerable<BooksObj> GetAllBooks(IBooksRepository booksRepository)
         {
             return booksRepository.GetAllBooks();
         }
 
-        public static Books GetBookById(IBooksRepository booksRepository, int id)
+        public static BooksObj GetBookById(IBooksRepository booksRepository, string id)
         {
             return booksRepository.GetBookById(id);
         }
 
-        public static Books AddBook(IBooksRepository booksRepository, Books newBook)
+        public static BooksObj AddBook(IBooksRepository booksRepository, BooksObj newBook)
         {
             return booksRepository.AddBook(newBook);
         }
 
-        public static Books UpdateBook(IBooksRepository booksRepository, int id, Books book)
+        public static BooksObj UpdateBook(IBooksRepository booksRepository, string id, BooksObj book)
         {
             return booksRepository.UpdateBook(id, book);
         }
 
-        public static async Task<Books> DeleteBook(IBooksRepository booksRepository, int id)
+        public static async Task<BooksObj> DeleteBook(IBooksRepository booksRepository, string id)
         {
             return await booksRepository.DeleteBook(id);
         }

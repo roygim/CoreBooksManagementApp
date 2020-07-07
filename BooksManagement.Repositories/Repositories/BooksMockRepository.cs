@@ -4,30 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BooksManagement.Models;
 
 namespace BooksManagement.Repositories
 {
     public class BooksMockRepository : IBooksRepository
     {
-        private List<Books> _booksList;
+        private List<BooksObj> _booksList;
 
         public BooksMockRepository()
         {
-            _booksList = new List<Books> 
+            _booksList = new List<BooksObj> 
             { 
-                new Books() { Id = 1, Name = "mock_aaa" }, 
-                new Books() { Id = 2, Name = "mock_bbb" } 
+                new BooksObj() { Id = "1", Name = "mock_aaa" }, 
+                new BooksObj() { Id = "2", Name = "mock_bbb" } 
             };
         }
 
-        public Books AddBook(Books newBook)
+        public BooksObj AddBook(BooksObj newBook)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Books> DeleteBook(int id)
+        public async Task<BooksObj> DeleteBook(string id)
         {
-            Books book = _booksList.Find(b => b.Id == id);
+            BooksObj book = _booksList.Find(b => b.Id == id);
             
             if (book == null)
             {
@@ -39,17 +40,17 @@ namespace BooksManagement.Repositories
             return book;
         }
 
-        public IEnumerable<Books> GetAllBooks()
+        public IEnumerable<BooksObj> GetAllBooks()
         {
             return _booksList;
         }
 
-        public Books GetBookById(int Id)
+        public BooksObj GetBookById(string Id)
         {
             throw new NotImplementedException();
         }
 
-        public Books UpdateBook(int id, Books book)
+        public BooksObj UpdateBook(string id, BooksObj book)
         {
             throw new NotImplementedException();
         }
