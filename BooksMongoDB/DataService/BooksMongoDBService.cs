@@ -18,11 +18,25 @@ namespace BooksMongoDB.DataService
             _books = database.GetCollection<Books>(settings.BooksCollectionName);
         }
 
-        public List<Books> Get() =>
-            _books.Find(book => true).ToList();
+        public List<Books> Get()
+        {
+            return _books.Find(book => true).ToList();
+        }
 
-        public Books Get(string id) =>
-            _books.Find<Books>(book => book.Id == id).FirstOrDefault();
+        public Books Get(string id)
+        {
+            Books b = null;
+
+            try
+            {
+                b = _books.Find<Books>(book => book.Id == id).FirstOrDefault();
+            }
+            catch (System.Exception ex)
+            {
+            }
+
+            return b;
+        }   
 
         public Books Create(Books book)
         {

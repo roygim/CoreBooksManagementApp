@@ -20,9 +20,9 @@ namespace BooksManagement.Repositories
         {
             List<BooksObj> books = new List<BooksObj>();
 
-            IEnumerable<Books> sqlBooks = _booksService.Get();
+            IEnumerable<Books> dbBooks = _booksService.Get();
 
-            foreach (Books b in sqlBooks)
+            foreach (Books b in dbBooks)
             {
                 books.Add(GetBooksObj(b));
             }
@@ -32,12 +32,19 @@ namespace BooksManagement.Repositories
 
         public BooksObj GetBookById(string Id)
         {
-            return null;
+            Books dbBook = _booksService.Get(Id);
+
+            if (dbBook == null)
+                return null;
+
+            return GetBooksObj(dbBook);
         }
 
         public BooksObj AddBook(BooksObj newBook)
         {
-            return null;
+            Books dbBook = GetMongoBooks(newBook);
+
+            return GetBooksObj(_booksService.Create(dbBook));
         }
 
         public BooksObj UpdateBook(string id, BooksObj book)
@@ -50,7 +57,7 @@ namespace BooksManagement.Repositories
             return null;
         }
         
-        private Books GetSqlBooks(BooksObj book)
+        private Books GetMongoBooks(BooksObj book)
         {
             Books sqlBook = new Books();
 
