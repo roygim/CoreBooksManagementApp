@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksManagement.Models\BooksManagement.Models.csproj" />
+    <ProjectReference Include="..\BooksMongoDB\BooksMongoDB.csproj" />
     <ProjectReference Include="..\BooksSQL\BooksSQL.csproj" />
   </ItemGroup>
 

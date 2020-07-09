@@ -20,6 +20,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
+using BooksMongoDB.DataService;
+using BooksMongoDB.DataSettings;
 
 namespace BooksManagement.API
 {
@@ -94,7 +97,15 @@ namespace BooksManagement.API
             services.AddDbContext<BooksSqlDBContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("BooksDBConnection")));
 
-            services.AddScoped<IBooksRepository, BooksSqlRepository>(); //BooksSqlRepository,BooksMockRepository
+            services.Configure<BooksMongoDBSettings>(
+                _config.GetSection(nameof(BooksMongoDBSettings)));
+
+            services.AddSingleton<IBooksMongoDBSettings>(sp =>
+                sp.GetRequiredService<IOptions<BooksMongoDBSettings>>().Value);
+
+            services.AddSingleton<BooksMongoDBService>();
+
+            services.AddScoped<IBooksRepository, BooksMongoDBRepository>(); //BooksSqlRepository,BooksMongoDBRepository,BooksMockRepository
 
             services.AddCors();
         }

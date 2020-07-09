@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksManagement.Repositorie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksSQL", "BooksSQL\BooksSQL.csproj", "{3CB25076-2D3E-4214-89E9-A156E16A3042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksManagement.Models", "BooksManagement.Models\BooksManagement.Models.csproj", "{15A9AFBF-F8E2-4F9F-B4E9-C0506A80DCCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksManagement.Models", "BooksManagement.Models\BooksManagement.Models.csproj", "{15A9AFBF-F8E2-4F9F-B4E9-C0506A80DCCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksMongoDB", "BooksMongoDB\BooksMongoDB.csproj", "{882DA3A0-186D-4CCE-BC18-D86EEAF3AC13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{15A9AFBF-F8E2-4F9F-B4E9-C0506A80DCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A9AFBF-F8E2-4F9F-B4E9-C0506A80DCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A9AFBF-F8E2-4F9F-B4E9-C0506A80DCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882DA3A0-186D-4CCE-BC18-D86EEAF3AC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882DA3A0-186D-4CCE-BC18-D86EEAF3AC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882DA3A0-186D-4CCE-BC18-D86EEAF3AC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882DA3A0-186D-4CCE-BC18-D86EEAF3AC13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
