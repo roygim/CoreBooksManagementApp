@@ -23,9 +23,9 @@ namespace BooksManagement.Repositories
         {
             List<BooksObj> books = new List<BooksObj>();
 
-            IEnumerable<Books> sqlBooks = BooksSqlDBService.GetAllBooks(_booksContext);
+            IEnumerable<Books> dbBook = BooksSqlDBService.GetAllBooks(_booksContext);
 
-            foreach (Books b in sqlBooks)
+            foreach (Books b in dbBook)
             {
                 books.Add(GetBooksObj(b));
             }
@@ -35,33 +35,33 @@ namespace BooksManagement.Repositories
 
         public BooksObj GetBookById(string Id)
         {
-            Books sqlBook = BooksSqlDBService.GetBookById(_booksContext, int.Parse(Id));
+            Books dbBook = BooksSqlDBService.GetBookById(_booksContext, int.Parse(Id));
 
-            if (sqlBook == null)
+            if (dbBook == null)
                 return null;
 
-            return GetBooksObj(sqlBook); 
+            return GetBooksObj(dbBook); 
         }
 
         public BooksObj AddBook(BooksObj newBook)
         {
-            Books sqlBook = GetSqlBooks(newBook);
+            Books dbBook = GetSqlBooks(newBook);
 
-            return GetBooksObj(BooksSqlDBService.AddBook(_booksContext, sqlBook));
+            return GetBooksObj(BooksSqlDBService.AddBook(_booksContext, dbBook));
         }
 
         public BooksObj UpdateBook(string id, BooksObj book)
         {
-            Books sqlBook = GetSqlBooks(book);
+            Books dbBook = GetSqlBooks(book);
 
-            return GetBooksObj(BooksSqlDBService.UpdateBook(_booksContext, int.Parse(id), sqlBook));
+            return GetBooksObj(BooksSqlDBService.UpdateBook(_booksContext, int.Parse(id), dbBook));
         }
 
         public async Task<BooksObj> DeleteBook(string id)
         {
-            Books sqlBook = await BooksSqlDBService.DeleteBook(_booksContext, int.Parse(id));
+            Books dbBook = await BooksSqlDBService.DeleteBook(_booksContext, int.Parse(id));
 
-            return GetBooksObj(sqlBook);
+            return GetBooksObj(dbBook);
         }
         
         private Books GetSqlBooks(BooksObj book)
