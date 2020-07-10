@@ -49,12 +49,22 @@ namespace BooksManagement.Repositories
 
         public BooksObj UpdateBook(string id, BooksObj book)
         {
-            return null;
+            book.Id = id;
+            Books dbBook = GetMongoBooks(book);
+            _booksService.Update(id, dbBook);
+            return book;
         }
 
         public async Task<BooksObj> DeleteBook(string id)
         {
-            return null;
+            Books dbBook = _booksService.Get(id);
+
+            if (dbBook == null)
+                return null;
+
+            _booksService.Remove(dbBook);
+
+            return GetBooksObj(dbBook);
         }
         
         private Books GetMongoBooks(BooksObj book)

@@ -44,13 +44,31 @@ namespace BooksMongoDB.DataService
             return book;
         }
 
-        public void Update(string id, Books bookIn) =>
-            _books.ReplaceOne(book => book.Id == id, bookIn);
+        public void Update(string id, Books bookIn)
+        {
+            try
+            {
+                _books.ReplaceOne(book => book.Id == id, bookIn);
+            }
+            catch (System.Exception ex)
+            {
+            }            
+        }
 
-        public void Remove(Books bookIn) =>
-            _books.DeleteOne(book => book.Id == bookIn.Id);
+        public void Remove(Books bookIn)
+        {
+            try
+            {
+                _books.DeleteOne(book => book.Id == bookIn.Id);
+            }
+            catch (System.Exception ex)
+            {
+            }            
+        }            
 
-        public void Remove(string id) =>
+        public void Remove(string id)
+        {
             _books.DeleteOne(book => book.Id == id);
+        }   
     }
 }
