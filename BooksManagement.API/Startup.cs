@@ -105,7 +105,8 @@ namespace BooksManagement.API
 
             services.AddSingleton<BooksMongoDBService>();
 
-            services.AddScoped<IBooksRepository, BooksSqlRepository>(); //BooksSqlRepository,BooksMongoDBRepository,BooksMockRepository
+            //services.AddScoped<IBooksRepository, BooksSqlRepository>(); //BooksSqlRepository,BooksMongoDBRepository,BooksMockRepository
+            services.AddScoped(Factories.GetBooksRepository);
 
             services.AddCors();
         }
@@ -137,6 +138,24 @@ namespace BooksManagement.API
                     name: "default",
                     pattern: "{controller=Books}/{action=Index}/{id?}");
             });
+        }
+
+        public static class Factories
+        {
+            public static IBooksRepository GetBooksRepository(IServiceProvider serviceProvider)
+            {
+                var env = serviceProvider.GetRequiredService<IWebHostEnvironment>();
+                if (env.IsDevelopment())
+                {
+                    var booksDB = serviceProvider.GetService(typeof(BooksSqlDBContext)) as BooksSqlDBContext;
+                    return new BooksSqlRepository(booksDB);
+                }
+                else
+                {
+                    var booksMongoDBService = serviceProvider.GetRequiredService(typeof(BooksMongoDBService)) as BooksMongoDBService;
+                    return new BooksMongoDBRepository(booksMongoDBService);
+                }
+            }
         }
     }
 }
