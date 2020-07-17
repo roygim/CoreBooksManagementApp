@@ -3,6 +3,7 @@ using BooksSQL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,11 @@ namespace BooksSQL.DataService
             await booksContext.SaveChangesAsync();
 
             return book;
+        }
+
+        public static IEnumerable<Books> GetStoredProcedureExample(BooksSqlDBContext booksContext, Books book)
+        {
+            return booksContext.Books.FromSqlRaw<Books>("GetBookByName @Name={0}, @Year={1}", book.Name, book.Year);
         }
     }
 }

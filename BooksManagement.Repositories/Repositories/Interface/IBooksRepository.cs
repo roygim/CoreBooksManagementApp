@@ -13,5 +13,6 @@ namespace BooksManagement.Repositories.Interface
         BooksObj AddBook(BooksObj newBook);
         BooksObj UpdateBook(string id, BooksObj book);
         Task<BooksObj> DeleteBook(string id);
+        IEnumerable<BooksObj> GetStoredProcedureExample(BooksObj book);
     }
 }

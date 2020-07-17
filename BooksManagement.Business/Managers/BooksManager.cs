@@ -33,5 +33,10 @@ namespace BooksManagement.Business.Managers
         {
             return await booksRepository.DeleteBook(id);
         }
+
+        public static IEnumerable<BooksObj> GetStoredProcedureExample(IBooksRepository booksRepository, BooksObj book)
+        {
+            return booksRepository.GetStoredProcedureExample(book);
+        }
     }
 }

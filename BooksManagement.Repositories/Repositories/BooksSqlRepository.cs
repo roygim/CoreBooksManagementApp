@@ -89,5 +89,21 @@ namespace BooksManagement.Repositories
 
             return booksObj;
         }
+
+        public IEnumerable<BooksObj> GetStoredProcedureExample(BooksObj book)
+        {
+            List<BooksObj> books = new List<BooksObj>();
+
+            Books dbBook = GetSqlBooks(book);
+
+            IEnumerable<Books> dbBooks = BooksSqlDBService.GetStoredProcedureExample(_booksContext, dbBook);
+
+            foreach (Books b in dbBooks)
+            {
+                books.Add(GetBooksObj(b));
+            }
+
+            return books;
+        }
     }
 }

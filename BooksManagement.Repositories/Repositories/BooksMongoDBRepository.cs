@@ -92,5 +92,10 @@ namespace BooksManagement.Repositories
 
             return booksObj;
         }
+
+        public IEnumerable<BooksObj> GetStoredProcedureExample(BooksObj book)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace BooksManagement.API.Controllers
             return BooksManager.UpdateBook(_booksRepository, id, book);
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Books/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<BooksObj>> Delete(string id)
         {
@@ -65,6 +65,15 @@ namespace BooksManagement.API.Controllers
                 return NotFound();
 
             return book;
+        }
+
+        // GET: api/Books/GetStoredProcedureExample
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("GetStoredProcedureExample")]
+        public IEnumerable<BooksObj> GetStoredProcedureExample(BooksObj book)
+        {
+            return BooksManager.GetStoredProcedureExample(_booksRepository, book);
         }
     }
 }

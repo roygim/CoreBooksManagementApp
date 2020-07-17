@@ -50,6 +50,11 @@ namespace BooksManagement.Repositories
             throw new NotImplementedException();
         }
 
+        public IEnumerable<BooksObj> GetStoredProcedureExample(BooksObj book)
+        {
+            throw new NotImplementedException();
+        }
+
         public BooksObj UpdateBook(string id, BooksObj book)
         {
             throw new NotImplementedException();
