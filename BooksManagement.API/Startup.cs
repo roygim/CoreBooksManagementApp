@@ -105,8 +105,8 @@ namespace BooksManagement.API
 
             services.AddSingleton<BooksMongoDBService>();
 
-            //services.AddScoped<IBooksRepository, BooksSqlRepository>(); //BooksSqlRepository,BooksMongoDBRepository,BooksMockRepository
-            services.AddScoped(Factories.GetBooksRepository);
+            services.AddScoped<IBooksRepository, BooksMockRepository>(); //BooksSqlRepository,BooksMongoDBRepository,BooksMockRepository
+            //services.AddScoped(Factories.GetBooksRepository);
 
             services.AddCors();
         }
